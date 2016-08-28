@@ -1,8 +1,8 @@
-# script-test
+#script-test
 
 This is my test to find my *personal* choice of scripting engine + language. It's currently a work in progress.
 
-## Criteria
+##Criteria
 
 The criteria a language would be judged would be, among others:
 
@@ -17,9 +17,9 @@ The criteria a language would be judged would be, among others:
  * Size. We don't want to add a lot of bulk for (just) a scripting language.
 
  
- ## Languages
+##Languages
  
- Languages that will be tested:
+Languages that will be tested:
  
  * [GameMonkey](http://www.gmscript.com/)
  * [Pawn](https://github.com/compuphase/pawn)
@@ -30,12 +30,12 @@ The criteria a language would be judged would be, among others:
  * [squirrel](http://www.squirrel-lang.org/)
  * javascript and typescript through [v8](https://github.com/v8/v8/wiki/Getting%20Started%20with%20Embedding) and [SpiderMonkey](https://developer.mozilla.org/en-US/docs/Mozilla/Projects/SpiderMonkey).
  
- As lua has various bindings, and like js/typescript has various "variants" one has to try different variants:
+As lua has various bindings, and like js/typescript has various "variants" one has to try different variants:
  
  * Standard lua
  * [MoonScript](http://moonscript.org/)
  
- and binding via
+and binding via
  
  * lua API/custom binding
  * [Selene](https://github.com/jeremyong/Selene)
@@ -46,9 +46,11 @@ The criteria a language would be judged would be, among others:
  * [MLuaBind](https://sourceforge.net/projects/mluabind/)
  * [SWIG](http://www.swig.org/)
  * [LuaBridge](https://github.com/vinniefalco/LuaBridge)
- 
- ## Testing
- Everything will be tested with a few tests:
+
+##Testing
+
+Everything will be tested with a few tests:
+
  * Calculate a number in the Fibonacci series, once with recurssion and once with looping
  * Calculate the length of a string by combinining smaller strings gotten from C++
  

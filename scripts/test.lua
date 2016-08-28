@@ -24,3 +24,15 @@ mytable = {}
 function mytable.foo()
     return 4
 end
+
+function use_bar_class()
+    return Bar.new(5):add_this(2)
+end
+
+function take_bar_class(bar)
+    return bar:add_this(2)
+end
+
+function return_bar_class()
+    return Bar.new(5)
+end

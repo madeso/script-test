@@ -34,9 +34,10 @@ SET(src_lua
     ../external/lua/src/lzio.c
 )
 
-INCLUDE_DIRECTORIES("../external/selene/include" "../external/lua/src")
-
 ADD_EXECUTABLE(selene-test selene-test.cc ${src_lua})
-
+TARGET_INCLUDE_DIRECTORIES(selene-test
+                           PRIVATE "../external/selene/include"
+                           PRIVATE "../external/lua/src"
+                           )
 SET_PROPERTY(TARGET selene-test PROPERTY CXX_STANDARD 11)
 SET_PROPERTY(TARGET selene-test PROPERTY CMAKE_CXX_STANDARD_REQUIRED ON)

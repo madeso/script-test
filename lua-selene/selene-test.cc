@@ -6,6 +6,12 @@ void TestFunc() {
   std::cout << "I'm a function in C++\n";
 }
 
+struct Bar {
+  int x;
+  Bar(int x_) : x(x_) {}
+  int AddThis(int y) const { return x + y; }
+};
+
 int main() {
   using namespace sel;
   State state{true};
@@ -38,6 +44,17 @@ int main() {
   std::cout << "\nCalling C++ function from lua\n";
   state["test_func"] = &TestFunc;
   state("test_func()");
+
+  std::cout << "\nClass test\n";
+  state["Bar"].SetClass<Bar, int>
+      ("add_this", &Bar::AddThis);
+  int use_bar_class = state["use_bar_class"]();
+  int take_bar_class = state["take_bar_class"](Bar(5));
+  Bar return_bar_class_bar = state["return_bar_class"]();
+  int return_bar_class = return_bar_class_bar.AddThis(2);
+  std::cout << "use_bar_class(7): " << use_bar_class << "\n";
+  std::cout << "take_bar_class(7): " << take_bar_class << "\n";
+  std::cout << "return_bar_class(7): " << return_bar_class << "\n";
 
   return 0;
 }

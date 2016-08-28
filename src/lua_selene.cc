@@ -12,6 +12,11 @@ struct Bar {
   int AddThis(int y) const { return x + y; }
 };
 
+void Print(const std::string& str) {
+  std::cout << "Printing from C++ now\n";
+  std::cout << str << "\n";
+}
+
 int main() {
   using namespace sel;
   State state{true};
@@ -55,6 +60,10 @@ int main() {
   std::cout << "use_bar_class(7): " << use_bar_class << "\n";
   std::cout << "take_bar_class(7): " << take_bar_class << "\n";
   std::cout << "return_bar_class(7): " << return_bar_class << "\n";
+
+  state["c_print"] = &Print;
+  state("old_print(\"hello world\", 3, nil)");
+  state("print(\"hello world\", 3, nil)");
 
   return 0;
 }

@@ -1,6 +1,24 @@
 #include <iostream>
+#include <chrono>
+#include <thread>
 
 #include "selene.h"
+
+class Timer {
+  typedef std::chrono::steady_clock Clock;
+ public:
+  Timer() : start(Clock::now()) {
+  }
+
+  long ms() {
+    std::chrono::time_point<Clock> end = Clock::now();
+    std::chrono::milliseconds diff = std::chrono::duration_cast<std::chrono::milliseconds>(end - start);
+    return diff.count();
+  }
+
+ private:
+  std::chrono::time_point<Clock> start;
+};
 
 void TestFunc() {
   std::cout << "I'm a function in C++\n";
@@ -71,7 +89,8 @@ int main() {
   auto loop = state["fib_loop"];
 
 #define TEST_COUNT 10
-#define PERF_COUNT 10
+#define PERF_COUNT 10000
+#define PERF_TIMES 4
 
   std::cout << "Rec: ";
   for(int i=1; i<=TEST_COUNT; ++i) {
@@ -86,6 +105,36 @@ int main() {
     std::cout << " " << v;
   }
   std::cout << "\n";
+
+  int v = 0;
+  double total = 0;
+
+  std::cout << "\nPerfomance tests\n";
+  v = 0;
+  total = 0;
+  for(int tot=0; tot<PERF_TIMES; ++tot){
+    Timer timer;
+    for (int i = 0; i < PERF_COUNT; ++i) {
+      int t = rec( (i%10) + 1 );
+      if (t > 0) ++v;
+    }
+    total += timer.ms() / 1000.0;
+    std::cout << ".";
+  }
+  std::cout << "rec:  " << v << " ms " << total/PERF_TIMES << "\n";
+
+  v = 0;
+  total = 0;
+  for(int tot=0; tot<PERF_TIMES; ++tot){
+    Timer timer;
+    for (int i = 0; i < PERF_COUNT; ++i) {
+      int t = loop( (i%10) + 1 );
+      if (t > 0) ++v;
+    }
+    total += timer.ms() / 1000.0;
+    std::cout << ".";
+  }
+  std::cout << "loop: " << v << " ms " << total/PERF_TIMES << "\n";
 
   return 0;
 }

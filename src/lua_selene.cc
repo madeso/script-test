@@ -65,5 +65,27 @@ int main() {
   state("old_print(\"hello world\", 3, nil)");
   state("print(\"hello world\", 3, nil)");
 
+  std::cout << "\nFibonacci tests\n";
+  std::cout << "//    1 2 3 5 8 13 21 34 55 89\n";
+  auto rec = state["fib_rec"];
+  auto loop = state["fib_loop"];
+
+#define TEST_COUNT 10
+#define PERF_COUNT 10
+
+  std::cout << "Rec: ";
+  for(int i=1; i<=TEST_COUNT; ++i) {
+    int v = rec(i);
+    std::cout << " " << v;
+  }
+  std::cout << "\n";
+
+  std::cout << "Loop:";
+  for(int i=1; i<=TEST_COUNT; ++i) {
+    int v = loop(i);
+    std::cout << " " << v;
+  }
+  std::cout << "\n";
+
   return 0;
 }

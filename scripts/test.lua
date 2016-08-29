@@ -54,3 +54,33 @@ end
 
 old_print = print
 print = print_wrapper
+
+function fib_rec(id)
+  if id == 1 then
+    return 1
+  elseif id == 2 then
+    return 2
+  else
+    return fib_rec(id-1) + fib_rec(id-2)
+  end
+end
+
+function fib_loop(id)
+  if id == 1 then
+    return 1
+  elseif id == 2 then
+    return 2
+  else
+    local val = 0
+    local last1 = 1
+    local last2 = 2
+
+    for i=3, id do
+      val = last1 + last2
+      last1 = last2
+      last2 = val
+    end
+
+    return val
+  end
+end

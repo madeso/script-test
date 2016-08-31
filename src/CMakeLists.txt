@@ -1,3 +1,5 @@
+set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_CURRENT_SOURCE_DIR}")
+
 SET(src_lua
     ../external/lua/src/lapi.c
     ../external/lua/src/lauxlib.c
@@ -42,8 +44,21 @@ TARGET_INCLUDE_DIRECTORIES(lua_selene
 SET_PROPERTY(TARGET lua_selene PROPERTY CXX_STANDARD 11)
 SET_PROPERTY(TARGET lua_selene PROPERTY CMAKE_CXX_STANDARD_REQUIRED ON)
 
+FIND_PACKAGE(LuaJIT)
+if( ${LUAJIT_FOUND} )
+  MESSAGE(STATUS "Including luajit tests")
+    
+  # selene require 5.2 but luajit is only 5.1 :(
+  # ADD_EXECUTABLE(luajit_selene lua_selene.cc)
+  # TARGET_INCLUDE_DIRECTORIES(luajit_selene
+  #                            PRIVATE "../external/selene/include"
+  #                            PRIVATE ${LUAJIT_INCLUDE_DIR}
+  #                            )
+  # TARGET_LINK_LIBRARIES(luajit_selene ${LUAJIT_LIBRARIES})
+  # SET_PROPERTY(TARGET luajit_selene PROPERTY CXX_STANDARD 11)
+  # SET_PROPERTY(TARGET luajit_selene PROPERTY CMAKE_CXX_STANDARD_REQUIRED ON)
+endif()
 
-set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_CURRENT_SOURCE_DIR}")
 FIND_PACKAGE(V8)
 IF(${V8_FOUND})
   MESSAGE(STATUS "Including v8 test")

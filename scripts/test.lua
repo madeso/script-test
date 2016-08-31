@@ -84,3 +84,16 @@ function fib_loop(id)
     return val
   end
 end
+
+function string_test(count)
+  local s = ""
+  local v = 0
+  local x = ""
+  for i=1, count do
+    x = build_string(s)
+    s = s .. x
+    v = v + string.len(x)
+  end
+
+  return v
+end

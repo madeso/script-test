@@ -1,27 +1,19 @@
 #include <iostream>
-#include <chrono>
-#include <thread>
+#include "shared.h"
 
 #include "selene.h"
 
-class Timer {
-  typedef std::chrono::steady_clock Clock;
- public:
-  Timer() : start(Clock::now()) {
-  }
-
-  long ms() {
-    std::chrono::time_point<Clock> end = Clock::now();
-    std::chrono::milliseconds diff = std::chrono::duration_cast<std::chrono::milliseconds>(end - start);
-    return diff.count();
-  }
-
- private:
-  std::chrono::time_point<Clock> start;
-};
-
 void TestFunc() {
   std::cout << "I'm a function in C++\n";
+}
+
+std::string BuildString(const std::string& str) {
+  if( str.empty() ) {
+    return "x";
+  }
+  else {
+    return "a";
+  }
 }
 
 struct Bar {
@@ -87,6 +79,7 @@ int main() {
   std::cout << "//    1 2 3 5 8 13 21 34 55 89\n";
   auto rec = state["fib_rec"];
   auto loop = state["fib_loop"];
+  auto str = state["string_test"];
 
 #define TEST_COUNT 10
 #define PERF_COUNT 10000
@@ -106,6 +99,11 @@ int main() {
   }
   std::cout << "\n";
 
+  std::cout << "\nString test:\n";
+  state["build_string"] = &BuildString;
+  const int s = str(6);
+  std::cout << "6: " << s << "\n";
+
   int v = 0;
   double total = 0;
 
@@ -118,7 +116,7 @@ int main() {
       int t = rec( (i%10) + 1 );
       if (t > 0) ++v;
     }
-    total += timer.ms() / 1000.0;
+    total += timer.ElapsedSec();
     std::cout << ".";
   }
   std::cout << "rec:  " << v << " ms " << total/PERF_TIMES << "\n";
@@ -131,10 +129,23 @@ int main() {
       int t = loop( (i%10) + 1 );
       if (t > 0) ++v;
     }
-    total += timer.ms() / 1000.0;
+    total += timer.ElapsedSec();
     std::cout << ".";
   }
   std::cout << "loop: " << v << " ms " << total/PERF_TIMES << "\n";
+
+  v = 0;
+  total = 0;
+  for(int tot=0; tot<PERF_TIMES; ++tot){
+    Timer timer;
+    for (int i = 0; i < PERF_COUNT; ++i) {
+      int t = str( (i%10) + 1 );
+      if (t > 0) ++v;
+    }
+    total += timer.ElapsedSec();
+    std::cout << ".";
+  }
+  std::cout << "str:  " << v << " ms " << total/PERF_TIMES << "\n";
 
   return 0;
 }

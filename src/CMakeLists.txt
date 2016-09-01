@@ -61,6 +61,29 @@ SET(src_slb
     ../external/slb/src/slb3_extra.cc
     )
 
+SET(src_oolua
+    ../external/oolua-2.0.1/src/class_from_stack.cpp
+    ../external/oolua-2.0.1/src/oolua.cpp
+    ../external/oolua-2.0.1/src/oolua_check_result.cpp
+    ../external/oolua-2.0.1/src/oolua_chunk.cpp
+    ../external/oolua-2.0.1/src/oolua_error.cpp
+    ../external/oolua-2.0.1/src/oolua_exception.cpp
+    ../external/oolua-2.0.1/src/oolua_function.cpp
+    ../external/oolua-2.0.1/src/oolua_helpers.cpp
+    ../external/oolua-2.0.1/src/oolua_open.cpp
+    ../external/oolua-2.0.1/src/oolua_pull.cpp
+    ../external/oolua-2.0.1/src/oolua_push.cpp
+    ../external/oolua-2.0.1/src/oolua_ref.cpp
+    ../external/oolua-2.0.1/src/oolua_registration.cpp
+    ../external/oolua-2.0.1/src/oolua_script.cpp
+    ../external/oolua-2.0.1/src/oolua_stack_dump.cpp
+    ../external/oolua-2.0.1/src/oolua_string.cpp
+    ../external/oolua-2.0.1/src/oolua_table.cpp
+    ../external/oolua-2.0.1/src/proxy_storage.cpp
+    ../external/oolua-2.0.1/src/push_pointer_internal.cpp
+    ../external/oolua-2.0.1/src/stack_get.cpp
+    )
+
 ################################################################################
 
 ADD_EXECUTABLE(lua_selene lua_selene.cc ${src_lua})
@@ -90,6 +113,16 @@ TARGET_INCLUDE_DIRECTORIES(lua_slb
                            )
 SET_PROPERTY(TARGET lua_slb PROPERTY CXX_STANDARD 11)
 SET_PROPERTY(TARGET lua_slb PROPERTY CMAKE_CXX_STANDARD_REQUIRED ON)
+
+################################################################################
+
+ADD_EXECUTABLE(lua_oolua lua_oolua.cc ${src_lua} ${src_oolua})
+TARGET_INCLUDE_DIRECTORIES(lua_oolua
+                           PRIVATE "../external/oolua-2.0.1/include"
+                           PRIVATE "../external/lua/src"
+                           )
+SET_PROPERTY(TARGET lua_oolua PROPERTY CXX_STANDARD 11)
+SET_PROPERTY(TARGET lua_oolua PROPERTY CMAKE_CXX_STANDARD_REQUIRED ON)
 
 ################################################################################
 

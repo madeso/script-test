@@ -19,3 +19,9 @@
 * needed to add a space ion a few places to fix literal operators/string concat errors
 * neither examples nor documentation and the few tests point to a API that seems to be a "safe" wrapper over the standard API.
 
+## lua + oolua
+* uses non standard include lua/lua.h
+* mixes custom library with lua code, doesn't deal with the "C" issues and potential for screwups
+* seemingly unable to get the return value
+* seems to be focused on extending instead of embedding
+

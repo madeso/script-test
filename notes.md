@@ -29,3 +29,9 @@
 * seems dead, last update seems to be in 2012
 * C library, not of any use
 
+## lua + MLuaBind
+* sourceforge download
+* dead? last update 2013
+* requires loki, also hosted by sourceforge, last updated in 2009, also refers to Loki instead of loki
+* various compiler issues and other errors relating to older c++ and never building on linux
+

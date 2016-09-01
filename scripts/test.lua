@@ -5,7 +5,7 @@ bar[3] = "hi"
 bar["key"] = "there"
 
 -- calling lua functions
-function foo()
+function ffoo()
 end
 
 function add(a, b)
@@ -14,10 +14,6 @@ end
 
 function sum_and_difference(a, b)
   return (a+b), (a-b);
-end
-
-function bar()
-  return 4, true, "hi"
 end
 
 mytable = {}

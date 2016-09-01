@@ -45,7 +45,7 @@ int main() {
 
   std::cout << "\nCalling lua functions\n";
 
-  state["foo"]();
+  state["ffoo"]();
 
   int result = state["add"](5, 2);
   std::cout << "result(7) " << result << "\n";

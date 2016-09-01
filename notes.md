@@ -7,3 +7,6 @@ various api changes
  
  ## lua + luabind
  download from sourceforge, low activity(last update june 2013)
+ seems to be focused on extending lua as a dll, not embedding, requires boost
+ 
+ 

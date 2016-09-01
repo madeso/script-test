@@ -25,3 +25,7 @@
 * seemingly unable to get the return value
 * seems to be focused on extending instead of embedding
 
+## lua + tolua++
+* seems dead, last update seems to be in 2012
+* C library, not of any use
+

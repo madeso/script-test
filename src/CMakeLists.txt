@@ -58,9 +58,9 @@ SET(src_luabind
 
 ################################################################################
 
-ADD_EXECUTABLE(lua_selene lua_selene.cc ${src_lua} ${src_luabind})
+ADD_EXECUTABLE(lua_selene lua_selene.cc ${src_lua})
 TARGET_INCLUDE_DIRECTORIES(lua_selene
-                           PRIVATE "../external/luabind-0.9.1/include"
+                           PRIVATE "../external/selene/include"
                            PRIVATE "../external/lua/src"
                            )
 SET_PROPERTY(TARGET lua_selene PROPERTY CXX_STANDARD 11)
@@ -68,9 +68,9 @@ SET_PROPERTY(TARGET lua_selene PROPERTY CMAKE_CXX_STANDARD_REQUIRED ON)
 
 ################################################################################
 
-ADD_EXECUTABLE(lua_luabind lua_luabind.cc ${src_lua})
+ADD_EXECUTABLE(lua_luabind lua_luabind.cc ${src_lua} ${src_luabind})
 TARGET_INCLUDE_DIRECTORIES(lua_luabind
-                           PRIVATE "../external/selene/include"
+                           PRIVATE "../external/luabind-0.9.1/"
                            PRIVATE "../external/lua/src"
                            )
 SET_PROPERTY(TARGET lua_luabind PROPERTY CXX_STANDARD 11)

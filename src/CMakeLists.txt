@@ -36,18 +36,52 @@ SET(src_lua
     ../external/lua/src/lzio.c
 )
 
-ADD_EXECUTABLE(lua_selene lua_selene.cc ${src_lua})
+SET(src_luabind
+    ../external/luabind-0.9.1/src/class.cpp
+    ../external/luabind-0.9.1/src/class_info.cpp
+    ../external/luabind-0.9.1/src/class_registry.cpp
+    ../external/luabind-0.9.1/src/class_rep.cpp
+    ../external/luabind-0.9.1/src/create_class.cpp
+    ../external/luabind-0.9.1/src/error.cpp
+    ../external/luabind-0.9.1/src/exception_handler.cpp
+    ../external/luabind-0.9.1/src/function.cpp
+    ../external/luabind-0.9.1/src/inheritance.cpp
+    ../external/luabind-0.9.1/src/link_compatibility.cpp
+    ../external/luabind-0.9.1/src/object_rep.cpp
+    ../external/luabind-0.9.1/src/open.cpp
+    ../external/luabind-0.9.1/src/pcall.cpp
+    ../external/luabind-0.9.1/src/scope.cpp
+    ../external/luabind-0.9.1/src/stack_content_by_name.cpp
+    ../external/luabind-0.9.1/src/weak_ref.cpp
+    ../external/luabind-0.9.1/src/wrapper_base.cpp
+    )
+
+################################################################################
+
+ADD_EXECUTABLE(lua_selene lua_selene.cc ${src_lua} ${src_luabind})
 TARGET_INCLUDE_DIRECTORIES(lua_selene
-                           PRIVATE "../external/selene/include"
+                           PRIVATE "../external/luabind-0.9.1/include"
                            PRIVATE "../external/lua/src"
                            )
 SET_PROPERTY(TARGET lua_selene PROPERTY CXX_STANDARD 11)
 SET_PROPERTY(TARGET lua_selene PROPERTY CMAKE_CXX_STANDARD_REQUIRED ON)
 
+################################################################################
+
+ADD_EXECUTABLE(lua_luabind lua_luabind.cc ${src_lua})
+TARGET_INCLUDE_DIRECTORIES(lua_luabind
+                           PRIVATE "../external/selene/include"
+                           PRIVATE "../external/lua/src"
+                           )
+SET_PROPERTY(TARGET lua_luabind PROPERTY CXX_STANDARD 11)
+SET_PROPERTY(TARGET lua_luabind PROPERTY CMAKE_CXX_STANDARD_REQUIRED ON)
+
+################################################################################
+
 FIND_PACKAGE(LuaJIT)
 if( ${LUAJIT_FOUND} )
   MESSAGE(STATUS "Including luajit tests")
-    
+
   # selene require 5.2 but luajit is only 5.1 :(
   # ADD_EXECUTABLE(luajit_selene lua_selene.cc)
   # TARGET_INCLUDE_DIRECTORIES(luajit_selene
@@ -58,6 +92,8 @@ if( ${LUAJIT_FOUND} )
   # SET_PROPERTY(TARGET luajit_selene PROPERTY CXX_STANDARD 11)
   # SET_PROPERTY(TARGET luajit_selene PROPERTY CMAKE_CXX_STANDARD_REQUIRED ON)
 endif()
+
+################################################################################
 
 FIND_PACKAGE(V8)
 IF(${V8_FOUND})
@@ -70,3 +106,5 @@ IF(${V8_FOUND})
   SET_PROPERTY(TARGET js_v8 PROPERTY CXX_STANDARD 11)
   SET_PROPERTY(TARGET js_v8 PROPERTY CMAKE_CXX_STANDARD_REQUIRED ON)
 ENDIF(${V8_FOUND})
+
+################################################################################

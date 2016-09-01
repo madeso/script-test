@@ -1,0 +1,5 @@
+-I./include
+-I./include/SLB3
+-I./deps/lua/src
+-I./deps/gtest/src
+-I./deps/gtest/include

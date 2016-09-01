@@ -56,6 +56,11 @@ SET(src_luabind
     ../external/luabind-0.9.1/src/wrapper_base.cpp
     )
 
+SET(src_slb
+    ../external/slb/src/slb3.cc
+    ../external/slb/src/slb3_extra.cc
+    )
+
 ################################################################################
 
 ADD_EXECUTABLE(lua_selene lua_selene.cc ${src_lua})
@@ -75,6 +80,16 @@ TARGET_INCLUDE_DIRECTORIES(lua_luabind
                            )
 SET_PROPERTY(TARGET lua_luabind PROPERTY CXX_STANDARD 11)
 SET_PROPERTY(TARGET lua_luabind PROPERTY CMAKE_CXX_STANDARD_REQUIRED ON)
+
+################################################################################
+
+ADD_EXECUTABLE(lua_slb lua_slb.cc ${src_lua} ${src_slb})
+TARGET_INCLUDE_DIRECTORIES(lua_slb
+                           PRIVATE "../external/slb/include"
+                           PRIVATE "../external/lua/src"
+                           )
+SET_PROPERTY(TARGET lua_slb PROPERTY CXX_STANDARD 11)
+SET_PROPERTY(TARGET lua_slb PROPERTY CMAKE_CXX_STANDARD_REQUIRED ON)
 
 ################################################################################
 

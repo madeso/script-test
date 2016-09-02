@@ -35,3 +35,8 @@
 * requires loki, also hosted by sourceforge, last updated in 2009, also refers to Loki instead of loki
 * various compiler issues and other errors relating to older c++ and never building on linux
 
+
+## lua + luabridge
+* last update 2013
+* needed to fix source for compiler error
+* one main feature is that there is only one include, but you have to include lua headers too, or you will get compiler errors and this isn't stated anywhere,

@@ -140,14 +140,14 @@ if( ${LUAJIT_FOUND} )
   MESSAGE(STATUS "Including luajit tests")
 
   # selene require 5.2 but luajit is only 5.1 :(
-  # ADD_EXECUTABLE(luajit_selene lua_selene.cc)
-  # TARGET_INCLUDE_DIRECTORIES(luajit_selene
-  #                            PRIVATE "../external/selene/include"
-  #                            PRIVATE ${LUAJIT_INCLUDE_DIR}
-  #                            )
-  # TARGET_LINK_LIBRARIES(luajit_selene ${LUAJIT_LIBRARIES})
-  # SET_PROPERTY(TARGET luajit_selene PROPERTY CXX_STANDARD 11)
-  # SET_PROPERTY(TARGET luajit_selene PROPERTY CMAKE_CXX_STANDARD_REQUIRED ON)
+  ADD_EXECUTABLE(luajit_selene lua_selene.cc)
+  TARGET_INCLUDE_DIRECTORIES(luajit_selene
+                             PRIVATE "../external/selene/include"
+                             PRIVATE ${LUAJIT_INCLUDE_DIR}
+                             )
+  TARGET_LINK_LIBRARIES(luajit_selene ${LUAJIT_LIBRARIES})
+  SET_PROPERTY(TARGET luajit_selene PROPERTY CXX_STANDARD 11)
+  SET_PROPERTY(TARGET luajit_selene PROPERTY CMAKE_CXX_STANDARD_REQUIRED ON)
 endif()
 
 ################################################################################

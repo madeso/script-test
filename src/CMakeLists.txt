@@ -126,16 +126,6 @@ SET_PROPERTY(TARGET lua_oolua PROPERTY CMAKE_CXX_STANDARD_REQUIRED ON)
 
 ################################################################################
 
-ADD_EXECUTABLE(lua_luabridge lua_luabridge.cc ${src_lua})
-TARGET_INCLUDE_DIRECTORIES(lua_luabridge
-                           PRIVATE "../external/LuaBridge-master/Source/"
-                           PRIVATE "../external/lua/src"
-                           )
-SET_PROPERTY(TARGET lua_luabridge PROPERTY CXX_STANDARD 11)
-SET_PROPERTY(TARGET lua_luabridge PROPERTY CMAKE_CXX_STANDARD_REQUIRED ON)
-
-################################################################################
-
 FIND_PACKAGE(LuaJIT)
 if( ${LUAJIT_FOUND} )
   MESSAGE(STATUS "Including luajit tests")

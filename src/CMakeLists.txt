@@ -126,6 +126,15 @@ SET_PROPERTY(TARGET lua_oolua PROPERTY CMAKE_CXX_STANDARD_REQUIRED ON)
 
 ################################################################################
 
+ADD_EXECUTABLE(lua_custom lua_custom.cc ${src_lua})
+TARGET_INCLUDE_DIRECTORIES(lua_custom
+                           PRIVATE "../external/lua/src"
+                           )
+SET_PROPERTY(TARGET lua_custom PROPERTY CXX_STANDARD 11)
+SET_PROPERTY(TARGET lua_custom PROPERTY CMAKE_CXX_STANDARD_REQUIRED ON)
+
+################################################################################
+
 FIND_PACKAGE(LuaJIT)
 if( ${LUAJIT_FOUND} )
   MESSAGE(STATUS "Including luajit tests")

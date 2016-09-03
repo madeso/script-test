@@ -42,3 +42,7 @@
 * only for binding, doesn't support variable lookup, for example
 * you have to use lua calls to use the library
 * cumbersome lua like c++ binding, doesn't look nice at all
+
+## lua + sol2
+* seems to need some parts of c++14 (it says it is c++11/14 but only compiling with 11 results in errors)
+* advanced template uses sometimes comfuses error highlightning in CLion

@@ -126,6 +126,16 @@ SET_PROPERTY(TARGET lua_oolua PROPERTY CMAKE_CXX_STANDARD_REQUIRED ON)
 
 ################################################################################
 
+ADD_EXECUTABLE(lua_sol2 lua_sol2.cc ${src_lua})
+TARGET_INCLUDE_DIRECTORIES(lua_sol2
+                           PRIVATE "../external/sol2"
+                           PRIVATE "../external/lua/src"
+                           )
+SET_PROPERTY(TARGET lua_sol2 PROPERTY CXX_STANDARD 14)
+SET_PROPERTY(TARGET lua_sol2 PROPERTY CMAKE_CXX_STANDARD_REQUIRED ON)
+
+################################################################################
+
 ADD_EXECUTABLE(lua_custom lua_custom.cc ${src_lua})
 TARGET_INCLUDE_DIRECTORIES(lua_custom
                            PRIVATE "../external/lua/src"

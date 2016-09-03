@@ -1,3 +1,5 @@
+print("in test.lua")
+
 -- accessing variables
 foo = 4
 bar = {}

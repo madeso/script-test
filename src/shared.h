@@ -29,4 +29,8 @@ class Timer {
 
 }  // namespace
 
+#define TEST_COUNT 10
+#define PERF_COUNT 10000
+#define PERF_TIMES 4
+
 #endif  // SHARED_H

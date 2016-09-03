@@ -81,10 +81,6 @@ int main() {
   auto loop = state["fib_loop"];
   auto str = state["string_test"];
 
-#define TEST_COUNT 10
-#define PERF_COUNT 10000
-#define PERF_TIMES 4
-
   std::cout << "Rec: ";
   for(int i=1; i<=TEST_COUNT; ++i) {
     int v = rec(i);

@@ -1,5 +1,6 @@
 ## lua + Selene - finished
 * Nothing to build and easy to bind
+* Constructors can only take one argument
 * OK, but doesn't support LuaJIT.
 
 ## Javascript + v8 - WIP

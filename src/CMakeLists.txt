@@ -158,6 +158,16 @@ if( ${LUAJIT_FOUND} )
   TARGET_LINK_LIBRARIES(luajit_selene ${LUAJIT_LIBRARIES})
   SET_PROPERTY(TARGET luajit_selene PROPERTY CXX_STANDARD 11)
   SET_PROPERTY(TARGET luajit_selene PROPERTY CMAKE_CXX_STANDARD_REQUIRED ON)
+
+
+  ADD_EXECUTABLE(luajit_sol2 lua_sol2.cc)
+  TARGET_INCLUDE_DIRECTORIES(luajit_sol2
+                             PRIVATE "../external/sol2"
+                             PRIVATE ${LUAJIT_INCLUDE_DIR}
+                             )
+  TARGET_LINK_LIBRARIES(luajit_sol2 ${LUAJIT_LIBRARIES})
+  SET_PROPERTY(TARGET luajit_sol2 PROPERTY CXX_STANDARD 14)
+  SET_PROPERTY(TARGET luajit_sol2 PROPERTY CMAKE_CXX_STANDARD_REQUIRED ON)
 endif()
 
 ################################################################################

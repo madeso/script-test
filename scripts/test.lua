@@ -35,8 +35,13 @@ function return_bar_class()
   return Bar.new(5)
 end
 
+-- table.pack isn't abailable in 5.1
+function custom_pack(...)
+  return { n = select("#", ...), ... }
+end
+
 function print_wrapper(...)
-  local args = table.pack(...)
+  local args = custom_pack(...)
   local str = ""
   local first = true
   for i=1,args.n do

@@ -1,0 +1,14 @@
+print("in test.chai")
+
+var foo = 4
+var bar = "hi"
+
+def ffoo() {
+}
+
+def add(a, b) {
+  return a + b
+}
+
+
+

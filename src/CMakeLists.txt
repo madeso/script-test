@@ -67,6 +67,18 @@ SET_PROPERTY(TARGET lua_custom PROPERTY CMAKE_CXX_STANDARD_REQUIRED ON)
 
 ################################################################################
 
+FIND_PACKAGE(Threads)
+ADD_EXECUTABLE(chai chai.cc)
+TARGET_INCLUDE_DIRECTORIES(chai
+                           PRIVATE "../external/ChaiScript-5.8.1/include"
+                           )
+SET_PROPERTY(TARGET chai PROPERTY CXX_STANDARD 11)
+SET_PROPERTY(TARGET chai PROPERTY CMAKE_CXX_STANDARD_REQUIRED ON)
+TARGET_LINK_LIBRARIES(chai ${CMAKE_DL_LIBS})
+TARGET_LINK_LIBRARIES(chai ${CMAKE_THREAD_LIBS_INIT})
+
+################################################################################
+
 FIND_PACKAGE(LuaJIT)
 if( ${LUAJIT_FOUND} )
   MESSAGE(STATUS "Including luajit tests")

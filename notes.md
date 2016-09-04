@@ -47,3 +47,8 @@
 ## lua + sol2
 * seems to need some parts of c++14 (it says it is c++11/14 but only compiling with 11 results in errors)
 * advanced template uses sometimes comfuses error highlightning in CLion
+
+## chai
+* slow compilation
+* tightly connected to C++
+

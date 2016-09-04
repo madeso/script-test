@@ -1,4 +1,5 @@
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_CURRENT_SOURCE_DIR}")
+FIND_PACKAGE(Threads)
 
 SET(src_lua
     ../external/lua/src/lapi.c
@@ -36,6 +37,107 @@ SET(src_lua
     ../external/lua/src/lzio.c
 )
 
+SET(src_angelscript
+    ../external/angelscript_2.31.1/angelscript/source/as_array.h
+    ../external/angelscript_2.31.1/angelscript/source/as_atomic.cpp
+    ../external/angelscript_2.31.1/angelscript/source/as_atomic.h
+    ../external/angelscript_2.31.1/angelscript/source/as_builder.cpp
+    ../external/angelscript_2.31.1/angelscript/source/as_builder.h
+    ../external/angelscript_2.31.1/angelscript/source/as_bytecode.cpp
+    ../external/angelscript_2.31.1/angelscript/source/as_bytecode.h
+    ../external/angelscript_2.31.1/angelscript/source/as_callfunc_arm.cpp
+    ../external/angelscript_2.31.1/angelscript/source/as_callfunc_arm_gcc.S
+    ../external/angelscript_2.31.1/angelscript/source/as_callfunc_arm_msvc.asm
+    ../external/angelscript_2.31.1/angelscript/source/as_callfunc_arm_vita.S
+    ../external/angelscript_2.31.1/angelscript/source/as_callfunc_arm_xcode.S
+    ../external/angelscript_2.31.1/angelscript/source/as_callfunc.cpp
+    ../external/angelscript_2.31.1/angelscript/source/as_callfunc.h
+    ../external/angelscript_2.31.1/angelscript/source/as_callfunc_mips.cpp
+    ../external/angelscript_2.31.1/angelscript/source/as_callfunc_ppc_64.cpp
+    ../external/angelscript_2.31.1/angelscript/source/as_callfunc_ppc.cpp
+    ../external/angelscript_2.31.1/angelscript/source/as_callfunc_sh4.cpp
+    ../external/angelscript_2.31.1/angelscript/source/as_callfunc_x64_gcc.cpp
+    ../external/angelscript_2.31.1/angelscript/source/as_callfunc_x64_mingw.cpp
+    ../external/angelscript_2.31.1/angelscript/source/as_callfunc_x64_msvc_asm.asm
+    ../external/angelscript_2.31.1/angelscript/source/as_callfunc_x64_msvc.cpp
+    ../external/angelscript_2.31.1/angelscript/source/as_callfunc_x86.cpp
+    ../external/angelscript_2.31.1/angelscript/source/as_callfunc_xenon.cpp
+    ../external/angelscript_2.31.1/angelscript/source/as_compiler.cpp
+    ../external/angelscript_2.31.1/angelscript/source/as_compiler.h
+    ../external/angelscript_2.31.1/angelscript/source/as_configgroup.cpp
+    ../external/angelscript_2.31.1/angelscript/source/as_configgroup.h
+    ../external/angelscript_2.31.1/angelscript/source/as_config.h
+    ../external/angelscript_2.31.1/angelscript/source/as_context.cpp
+    ../external/angelscript_2.31.1/angelscript/source/as_context.h
+    ../external/angelscript_2.31.1/angelscript/source/as_criticalsection.h
+    ../external/angelscript_2.31.1/angelscript/source/as_datatype.cpp
+    ../external/angelscript_2.31.1/angelscript/source/as_datatype.h
+    ../external/angelscript_2.31.1/angelscript/source/as_debug.h
+    ../external/angelscript_2.31.1/angelscript/source/as_gc.cpp
+    ../external/angelscript_2.31.1/angelscript/source/as_gc.h
+    ../external/angelscript_2.31.1/angelscript/source/as_generic.cpp
+    ../external/angelscript_2.31.1/angelscript/source/as_generic.h
+    ../external/angelscript_2.31.1/angelscript/source/as_globalproperty.cpp
+    ../external/angelscript_2.31.1/angelscript/source/as_map.h
+    ../external/angelscript_2.31.1/angelscript/source/as_memory.cpp
+    ../external/angelscript_2.31.1/angelscript/source/as_memory.h
+    ../external/angelscript_2.31.1/angelscript/source/as_module.cpp
+    ../external/angelscript_2.31.1/angelscript/source/as_module.h
+    ../external/angelscript_2.31.1/angelscript/source/as_namespace.h
+    ../external/angelscript_2.31.1/angelscript/source/as_objecttype.cpp
+    ../external/angelscript_2.31.1/angelscript/source/as_objecttype.h
+    ../external/angelscript_2.31.1/angelscript/source/as_outputbuffer.cpp
+    ../external/angelscript_2.31.1/angelscript/source/as_outputbuffer.h
+    ../external/angelscript_2.31.1/angelscript/source/as_parser.cpp
+    ../external/angelscript_2.31.1/angelscript/source/as_parser.h
+    ../external/angelscript_2.31.1/angelscript/source/as_property.h
+    ../external/angelscript_2.31.1/angelscript/source/as_restore.cpp
+    ../external/angelscript_2.31.1/angelscript/source/as_restore.h
+    ../external/angelscript_2.31.1/angelscript/source/as_scriptcode.cpp
+    ../external/angelscript_2.31.1/angelscript/source/as_scriptcode.h
+    ../external/angelscript_2.31.1/angelscript/source/as_scriptengine.cpp
+    ../external/angelscript_2.31.1/angelscript/source/as_scriptengine.h
+    ../external/angelscript_2.31.1/angelscript/source/as_scriptfunction.cpp
+    ../external/angelscript_2.31.1/angelscript/source/as_scriptfunction.h
+    ../external/angelscript_2.31.1/angelscript/source/as_scriptnode.cpp
+    ../external/angelscript_2.31.1/angelscript/source/as_scriptnode.h
+    ../external/angelscript_2.31.1/angelscript/source/as_scriptobject.cpp
+    ../external/angelscript_2.31.1/angelscript/source/as_scriptobject.h
+    ../external/angelscript_2.31.1/angelscript/source/as_string.cpp
+    ../external/angelscript_2.31.1/angelscript/source/as_string.h
+    ../external/angelscript_2.31.1/angelscript/source/as_string_util.cpp
+    ../external/angelscript_2.31.1/angelscript/source/as_string_util.h
+    ../external/angelscript_2.31.1/angelscript/source/as_symboltable.h
+    ../external/angelscript_2.31.1/angelscript/source/as_texts.h
+    ../external/angelscript_2.31.1/angelscript/source/as_thread.cpp
+    ../external/angelscript_2.31.1/angelscript/source/as_thread.h
+    ../external/angelscript_2.31.1/angelscript/source/as_tokendef.h
+    ../external/angelscript_2.31.1/angelscript/source/as_tokenizer.cpp
+    ../external/angelscript_2.31.1/angelscript/source/as_tokenizer.h
+    ../external/angelscript_2.31.1/angelscript/source/as_typeinfo.cpp
+    ../external/angelscript_2.31.1/angelscript/source/as_typeinfo.h
+    ../external/angelscript_2.31.1/angelscript/source/as_variablescope.cpp
+    ../external/angelscript_2.31.1/angelscript/source/as_variablescope.h
+    ../external/angelscript_2.31.1/add_on/contextmgr/contextmgr.cpp
+    ../external/angelscript_2.31.1/add_on/datetime/datetime.cpp
+    ../external/angelscript_2.31.1/add_on/debugger/debugger.cpp
+    ../external/angelscript_2.31.1/add_on/scriptany/scriptany.cpp
+    ../external/angelscript_2.31.1/add_on/scriptarray/scriptarray.cpp
+    ../external/angelscript_2.31.1/add_on/scriptbuilder/scriptbuilder.cpp
+    ../external/angelscript_2.31.1/add_on/scriptdictionary/scriptdictionary.cpp
+    ../external/angelscript_2.31.1/add_on/scriptfile/scriptfile.cpp
+    ../external/angelscript_2.31.1/add_on/scriptfile/scriptfilesystem.cpp
+    ../external/angelscript_2.31.1/add_on/scriptgrid/scriptgrid.cpp
+    ../external/angelscript_2.31.1/add_on/scripthandle/scripthandle.cpp
+    ../external/angelscript_2.31.1/add_on/scripthelper/scripthelper.cpp
+    ../external/angelscript_2.31.1/add_on/scriptmath/scriptmathcomplex.cpp
+    ../external/angelscript_2.31.1/add_on/scriptmath/scriptmath.cpp
+    ../external/angelscript_2.31.1/add_on/scriptstdstring/scriptstdstring.cpp
+    ../external/angelscript_2.31.1/add_on/scriptstdstring/scriptstdstring_utils.cpp
+    ../external/angelscript_2.31.1/add_on/serializer/serializer.cpp
+    ../external/angelscript_2.31.1/add_on/weakref/weakref.cpp
+    )
+
 ################################################################################
 
 ADD_EXECUTABLE(lua_selene lua_selene.cc ${src_lua})
@@ -67,7 +169,19 @@ SET_PROPERTY(TARGET lua_custom PROPERTY CMAKE_CXX_STANDARD_REQUIRED ON)
 
 ################################################################################
 
-FIND_PACKAGE(Threads)
+ADD_EXECUTABLE(angelscript angelscript.cc ${src_angelscript})
+TARGET_INCLUDE_DIRECTORIES(angelscript
+                           PRIVATE "../external/angelscript_2.31.1/angelscript/include"
+                           PRIVATE "../external/angelscript_2.31.1/add_on"
+                           )
+SET_PROPERTY(TARGET angelscript PROPERTY CXX_STANDARD 11)
+SET_PROPERTY(TARGET angelscript PROPERTY CMAKE_CXX_STANDARD_REQUIRED ON)
+TARGET_COMPILE_DEFINITIONS(angelscript PRIVATE AS_USE_NAMESPACE)
+TARGET_LINK_LIBRARIES(angelscript ${CMAKE_THREAD_LIBS_INIT})
+# -fno-strict-aliasing
+
+################################################################################
+
 ADD_EXECUTABLE(chai chai.cc)
 TARGET_INCLUDE_DIRECTORIES(chai
                            PRIVATE "../external/ChaiScript-5.8.1/include"

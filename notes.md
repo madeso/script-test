@@ -53,4 +53,8 @@
 * tightly connected to C++
 * heavy template uses confuses highlightning
 
+## AngelScript
+* at least one release each year since 2005
+* verbose/tedious/low-level scripting API
+* no function calls outside of functions, ie you need to use the "main method" 
 

@@ -3,30 +3,6 @@
 
 #include "sol.hpp"
 
-void TestFunc() {
-  std::cout << "I'm a function in C++\n";
-}
-
-std::string BuildString(const std::string& str) {
-  if( str.empty() ) {
-    return "x";
-  }
-  else {
-    return "a";
-  }
-}
-
-struct Bar {
-  int x;
-  Bar(int x_) : x(x_) {}
-  int AddThis(int y) const { return x + y; }
-};
-
-void Print(const std::string& str) {
-  std::cout << "Printing from C++ now\n";
-  std::cout << str << "\n";
-}
-
 int main() {
   sol::state state;
   state.open_libraries(sol::lib::base, sol::lib::package, sol::lib::table, sol::lib::string);

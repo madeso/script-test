@@ -3,30 +3,6 @@
 
 #include "selene.h"
 
-void TestFunc() {
-  std::cout << "I'm a function in C++\n";
-}
-
-std::string BuildString(const std::string& str) {
-  if( str.empty() ) {
-    return "x";
-  }
-  else {
-    return "a";
-  }
-}
-
-struct Bar {
-  int x;
-  Bar(int x_) : x(x_) {}
-  int AddThis(int y) const { return x + y; }
-};
-
-void Print(const std::string& str) {
-  std::cout << "Printing from C++ now\n";
-  std::cout << str << "\n";
-}
-
 int main() {
   using namespace sel;
   State state{true};

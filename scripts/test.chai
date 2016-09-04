@@ -22,5 +22,47 @@ def return_bar_class() {
   return Bar(5)
 }
 
+def fib_rec(id) {
+  if( id == 1 ) {
+    return 1
+  } else if( id == 2) {
+    return 2
+  } else {
+    return fib_rec(id-1) + fib_rec(id-2)
+  }
+}
+
+def fib_loop(id) {
+  if ( id == 1 ) {
+    return 1
+  } else if (id == 2) {
+    return 2
+  } else {
+    var val = 0
+    var last1 = 1
+    var last2 = 2
+
+    for(var i=3; i<=id; ++i) {
+      val = last1 + last2
+      last1 = last2
+      last2 = val
+    }
+
+    return val
+  }
+}
+
+def string_test(count) {
+  var s = ""
+  var v = 0
+  var x = ""
+  for(var i=1; i<=count; ++i) {
+    x = build_string(s)
+    s = s + x
+    v = v + x.size()
+  }
+
+  return v
+}
 
 

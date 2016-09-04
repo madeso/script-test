@@ -10,5 +10,17 @@ def add(a, b) {
   return a + b
 }
 
+def use_bar_class() {
+  return Bar(5).add_this(2)
+}
+
+def take_bar_class(bar) {
+  return bar.add_this(2)
+}
+
+def return_bar_class() {
+  return Bar(5)
+}
+
 
 

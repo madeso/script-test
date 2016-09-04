@@ -51,4 +51,6 @@
 ## chai
 * slow compilation
 * tightly connected to C++
+* heavy template uses confuses highlightning
+
 

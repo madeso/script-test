@@ -3,6 +3,7 @@
 #include <angelscript.h>
 #include <scriptstdstring/scriptstdstring.h>
 #include <scriptbuilder/scriptbuilder.h>
+#include "shared.h"
 
 // Print the script string to the standard output stream
 void print(std::string &msg)
@@ -20,6 +21,73 @@ void MessageCallback(const AngelScript::asSMessageInfo *msg, void *param)
   std::cerr << msg->section <<" ("<<msg->row<<", "<<msg->col<<") : "<<type<<" : "<<msg->message<<"\n";
 }
 
+void Die(const std::string& err) {
+  std::cerr << err << "\n";
+  throw err;
+}
+
+struct AsTest : LanguageTest<AsTest> {
+  AsTest(AngelScript::asIScriptContext* ctx, AngelScript::asIScriptModule *mod) : ctx_(ctx) {
+    rec = mod->GetFunctionByDecl("int fib_rec(int)");
+    if( rec == NULL ) Die("failed to get rec");
+
+    loop = mod->GetFunctionByDecl("int fib_loop(int)");
+    if( loop == NULL ) Die("failed to get loop");
+
+    str = mod->GetFunctionByDecl("int string_test(int)");
+    if( str == NULL ) Die("failed to get str");
+  }
+
+  int RunRec(int i) {
+    int p = ctx_->Prepare(rec);
+    if( p < 0 ) {
+      std::cerr << "Failed to prepare " << p << "\n";
+      return -42;
+    }
+    ctx_->SetArgDWord(0, i);
+    int r = ctx_->Execute();
+    if( r == AngelScript::asEXECUTION_FINISHED) {
+      return ctx_->GetReturnDWord();
+    }
+
+    return -42;
+  }
+
+  int RunLoop(int i) {
+    int p = ctx_->Prepare(loop);
+    if( p < 0 ) {
+      std::cerr << "Failed to prepare " << p << "\n";
+      return -42;
+    }
+    ctx_->SetArgDWord(0, i);
+    int r = ctx_->Execute();
+    if( r == AngelScript::asEXECUTION_FINISHED) {
+      return ctx_->GetReturnDWord();
+    }
+
+    return -42;
+  }
+
+  int RunStr(int i) {
+    int p = ctx_->Prepare(str);
+    if( p < 0 ) {
+      std::cerr << "Failed to prepare " << p << "\n";
+      return -42;
+    }
+    ctx_->SetArgDWord(0, i);
+    int r = ctx_->Execute();
+    if( r == AngelScript::asEXECUTION_FINISHED) {
+      return ctx_->GetReturnDWord();
+    }
+
+    return -42;
+  }
+
+  AngelScript::asIScriptFunction* rec;
+  AngelScript::asIScriptFunction* loop;
+  AngelScript::asIScriptFunction* str;
+  AngelScript::asIScriptContext *ctx_;
+};
 
 int main() {
   using namespace AngelScript;
@@ -38,6 +106,12 @@ int main() {
   r = engine->RegisterGlobalFunction("void print(const string &in)", asFUNCTION(print), asCALL_CDECL);
   if( r < 0 ) {
     std::cerr << "Failed to setup as " << r << "\n";
+    return 0;
+  }
+
+  r = engine->RegisterGlobalFunction("string build_string(string)", asFUNCTION(BuildString), asCALL_CDECL);
+  if( r < 0 ) {
+    std::cerr << "Failed to setup build_string " << r << "\n";
     return 0;
   }
 
@@ -80,6 +154,9 @@ int main() {
       std::cerr << "An exception '" << ctx->GetExceptionString() <<"' occurred. Please correct the code and try again.\n";
     }
   }
+
+  AsTest test(ctx, mod);
+  test.Run();
 
   ctx->Release();
   engine->ShutDownAndRelease();

@@ -15,6 +15,8 @@
 #endif
 #include <assert.h> // assert
 
+#include "string.h"
+
 using namespace std;
 
 BEGIN_AS_NAMESPACE
